@@ -27,11 +27,11 @@
 }
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    [[Player returnSharedInstance] stopPlaying];
+    [[Player sharedInstance] stopPlaying];
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [[Player returnSharedInstance] stopPlaying];
+    [[Player sharedInstance] stopPlaying];
 }
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
@@ -39,7 +39,7 @@
 }
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    [[Player returnSharedInstance] playFile];
+    [[Player sharedInstance] playFile];
 }
 - (void)applicationWillTerminate:(UIApplication *)application
 {

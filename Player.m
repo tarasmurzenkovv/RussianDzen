@@ -11,11 +11,12 @@
 {
     AVAudioPlayer* player;
 }
-+(Player*)returnSharedInstance
++(Player*)sharedInstance
 {
     static Player* my_player=nil;
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    dispatch_once(&onceToken, ^
+    {
         my_player = [[self alloc] init:@"/Anima_-_05_-_The_Waning_Moon.mp3"];
     });
     return my_player;

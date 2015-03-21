@@ -47,7 +47,7 @@
                                     userInfo:nil
                                      repeats:YES];
     
-    [[Player returnSharedInstance] playFile];
+    [[Player sharedInstance] playFile];
 }
 -(IBAction)pinchGesture:(id)sender
 {

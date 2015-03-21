@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 @interface Player : NSObject
-+(Player*)returnSharedInstance;
++(Player*)sharedInstance;
 -(id)init:(NSString*)nameOfFileToPlay;
 -(void)playFile;
 -(void)stopPlaying;
