@@ -5,11 +5,9 @@
 //  Created by Taras Murzenkov on 21.12.14.
 //
 //
-
 #import "ViewController.h"
-#import "Player.h"
 #import "UsefulQuotes.h"
-#import <UIKit/UIKit.h>
+#import "Player.h"
 
 #define CURRENT_DEVICE    UI_USER_INTERFACE_IDIOM()
 #define IPAD              UIUserInterfaceIdiomPad
@@ -18,31 +16,21 @@
 #define IS_IPHONE_5       (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568) < DBL_EPSILON)
 #define IS_IPHONE_6       (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)667) < DBL_EPSILON)
 #define IS_IPHONE_6_PLUS  (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)736) < DBL_EPSILON)
-
-@interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *usd_rur;
-@property (weak, nonatomic) IBOutlet UILabel *eur_rur;
-@property (weak, nonatomic) IBOutlet UILabel *usd_barrel;
-@property (weak, nonatomic) IBOutlet UILabel *description_usd_rur;
-@property (weak, nonatomic) IBOutlet UILabel *description_eur_rur;
-@property (weak, nonatomic) IBOutlet UILabel *description_usd_barrel;
-@property (strong, nonatomic) UsefulQuotes* uq;
--(IBAction)pinchGesture:(id)sender;
--(void)initLableSize;
--(void)setRandomImage;
--(void)initLabelsValue;
-@end
-
-@class UsefulQuotes;
-@class Player;
+#define FONT_BIG_SIZE_NUMBER   ((int)60)
+#define FONT_BIG_SIZE_TITLE    ((int)30)
+#define FONT_SMALL_SIZE_NUMBER ((int)28)
+#define FONT_SMALL_SIZE_TITLE  ((int)15)
 
 @implementation ViewController
+{
+    UsefulQuotes* uq;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    _uq=[[UsefulQuotes alloc] init];
+    uq=[[UsefulQuotes alloc] init];
     [self initLableSize];
     [self initLabelsValue];
     [self setRandomImage];
@@ -77,10 +65,10 @@
 }
 - (void)updateLabels
 {
-    NSLog(@"Log: %@ %@ %@", [_uq getUSDRURQuote],[_uq getEURRURQuote],[_uq getBrentQuote]);
-    self.usd_rur.text=[_uq getUSDRURQuote];
-    self.eur_rur.text=[_uq getEURRURQuote];
-    self.usd_barrel.text=[_uq getBrentQuote];
+    NSLog(@"Log: %@ %@ %@", [uq getUSDRURQuote],[uq getEURRURQuote],[uq getBrentQuote]);
+    self.usd_rur.text=[uq getUSDRURQuote];
+    self.eur_rur.text=[uq getEURRURQuote];
+    self.usd_barrel.text=[uq getBrentQuote];
     
     [_description_usd_rur setText:@"USD/RUR"];
     [_description_eur_rur setText:@"EUR/RUR"];
@@ -108,23 +96,23 @@
 {
     if (CURRENT_DEVICE==IPAD||IS_IPHONE_6||IS_IPHONE_6_PLUS)
     {
-        [_usd_rur setFont:[UIFont systemFontOfSize:60]];
-        [_eur_rur setFont:[UIFont systemFontOfSize:60]];
-        [_usd_barrel setFont:[UIFont systemFontOfSize:60]];
+        [_usd_rur setFont:[UIFont systemFontOfSize:FONT_BIG_SIZE_NUMBER]];
+        [_eur_rur setFont:[UIFont systemFontOfSize:FONT_BIG_SIZE_NUMBER]];
+        [_usd_barrel setFont:[UIFont systemFontOfSize:FONT_BIG_SIZE_NUMBER]];
         
-        [_description_usd_rur setFont:[UIFont systemFontOfSize:30]];
-        [_description_eur_rur setFont:[UIFont systemFontOfSize:30]];
-        [_description_usd_barrel setFont:[UIFont systemFontOfSize:30]];
+        [_description_usd_rur setFont:[UIFont systemFontOfSize:FONT_BIG_SIZE_TITLE]];
+        [_description_eur_rur setFont:[UIFont systemFontOfSize:FONT_BIG_SIZE_TITLE]];
+        [_description_usd_barrel setFont:[UIFont systemFontOfSize:FONT_BIG_SIZE_TITLE]];
     }
     else
     {
-        [_usd_rur setFont:[UIFont systemFontOfSize:28]];
-        [_eur_rur setFont:[UIFont systemFontOfSize:28]];
-        [_usd_barrel setFont:[UIFont systemFontOfSize:28]];
+        [_usd_rur setFont:[UIFont systemFontOfSize:FONT_SMALL_SIZE_NUMBER]];
+        [_eur_rur setFont:[UIFont systemFontOfSize:FONT_SMALL_SIZE_NUMBER]];
+        [_usd_barrel setFont:[UIFont systemFontOfSize:FONT_SMALL_SIZE_NUMBER]];
         
-        [_description_usd_rur setFont:[UIFont systemFontOfSize:15]];
-        [_description_eur_rur setFont:[UIFont systemFontOfSize:15]];
-        [_description_usd_barrel setFont:[UIFont systemFontOfSize:15]];
+        [_description_usd_rur setFont:[UIFont systemFontOfSize:FONT_SMALL_SIZE_TITLE]];
+        [_description_eur_rur setFont:[UIFont systemFontOfSize:FONT_SMALL_SIZE_TITLE]];
+        [_description_usd_barrel setFont:[UIFont systemFontOfSize:FONT_SMALL_SIZE_TITLE]];
     }
 }
 @end

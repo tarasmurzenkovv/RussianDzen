@@ -7,15 +7,6 @@
 //
 
 #import "UsefulQuotes.h"
-#import <Foundation/Foundation.h>
-
-@interface UsefulQuotes : NSObject
--(NSString*)getUSDRURQuote;
--(NSString*)getEURRURQuote;
--(NSString*)getBrentQuote;
--(NSString*)formattedOutput:(NSString*)input;
-@end
-@class UsefulQuotes;
 
 @implementation UsefulQuotes
 -(NSString*)formattedOutput:(NSString *)input

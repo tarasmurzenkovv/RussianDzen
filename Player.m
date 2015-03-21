@@ -5,30 +5,19 @@
 //  Created by Taras Murzenkov on 18.01.15.
 //
 //
-
 #import "Player.h"
-#import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
-@interface Player : NSObject
-+(Player*)returnSharedInstance;
--(id)init:(NSString*)nameOfFileToPlay;
--(void)playFile;
--(void)stopPlaying;
-@end
-
-@class Player;
 
 @implementation Player
 {
     AVAudioPlayer* player;
 }
-static Player* my_player;
 +(Player*)returnSharedInstance
 {
-    if (my_player==nil)
-    {
-        my_player=[[self alloc] init:@"/Anima_-_05_-_The_Waning_Moon.mp3"];
-    }
+    static Player* my_player=nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        my_player = [[self alloc] init:@"/Anima_-_05_-_The_Waning_Moon.mp3"];
+    });
     return my_player;
 }
 -(id)init:(NSString *)nameOfFileToPlay
